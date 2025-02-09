@@ -122,6 +122,7 @@ impl Snake {
 
     pub fn restore_tail(&mut self) {
         let blk = self.tail.clone().unwrap();
+        self.body.push_back(blk);
     }
 
     pub fn overlap_tail(&self, x: i32, y: i32) -> bool {
