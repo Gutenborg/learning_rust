@@ -50,6 +50,9 @@ fn main() {
     // Different members of the enum can have different types and are still valid representations of the enum
     let homeEnumVariantType = IpAddrEnumVariantTypes::V4(127, 0, 0, 1);
     let loopbackEnumVariantType = IpAddrEnumVariantTypes::V6(String::from("::1"));
+
+    plus_one(None);
+    plus_one(Some(5));
 }
 
 /** Takes in a type of an enum, so it matches any variant within the enum */
@@ -76,4 +79,29 @@ impl Message {
 fn enumTest() {
     let m = Message::Write(String::from("hello"));
     m.call();
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    // Match expressions are similar to if expressions, but can compare any type not just booleans
+    return match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    };
+}
+
+// Match can be used for more than just enums
+fn plus_one(x: Option<i32>) -> i32 {
+    return match x {
+        None => 0,
+        Some(i) => i + 1,
+    };
 }
